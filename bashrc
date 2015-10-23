@@ -1,12 +1,14 @@
 #set prompt
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
   SESSION_TYPE=remote/ssh
-# many other tests omitted
 else
   case $(ps -o comm= -p $PPID) in
     sshd|*/sshd) SESSION_TYPE=remote/ssh;;
   esac
 fi
+
+#add git info
+source ~/.git-prompt.sh
 
 function prompt
 {
@@ -22,12 +24,15 @@ local BRIGHTGREEN="\[\033[1;32m\]"
 local GREEN="\[\033[0;32m\]"
 local CYAN="\[\033[0;36m\]"
 local GRAY="\[\033[0;37m\]"
+local PURPLE="\[\033[0;35m\]"
+local purple="\[\033[1;35m\]"
+
 if [[ "${SESSION_TYPE}" = "remote/ssh" ]]; then  
     HILIT=${red}   # remote machine: prompt will be partly red
 else
     HILIT=${cyan}  # local machine: prompt will be partly cyan
 fi
-PS1="${WHITE}( ${HILIT}\u${BRIGHTGREEN}@${HILIT}\h ${GREEN}\w${WHITE} )
+PS1="${WHITE}( ${HILIT}\u${BRIGHTGREEN}@${HILIT}\h ${GREEN}\w${PURPLE}$(__git_ps1)${WHITE} )
 ${GRAY}==> ${BRIGHTGREEN}"
 }
 prompt
@@ -155,7 +160,6 @@ export TEXINPUTS="$HOME/tex"
 export TEXCONFIG="$HOME/tex"
 export BIBINPUTS="$HOME/tex"
 export BSTINPUTS="$HOME/tex"
-export ECHO_NEST_API_KEY="HDRHKTLG6MWRQGAAL"
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 #virtual env wrapper
