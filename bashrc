@@ -172,9 +172,5 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 
 myip=$(curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//')
 
-function moviecp () {
-    rsync -avz -e 'ssh -p 2222' --progress --bwlimit=1000 "nketz@$(whatsmyip):/home/nketz/Downloads/Torrents/$1" $2
-}
-
 export QTDIR=/usr/local/Qt5.2.0/5.2.0/clang_64/
 
