@@ -64,6 +64,8 @@ alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 alias du='du -kh'       # Makes a more readable output.
 alias df='df -kh'
 
+alias emacs='emacs -nw' #non-gui emacs
+
 #-------------------------------------------------------------
 # The 'ls' family (this assumes you use a recent GNU ls)
 #-------------------------------------------------------------
@@ -173,3 +175,6 @@ export QTDIR=/usr/local/Qt5.2.0/5.2.0/clang_64/
 #misc
 myip=$(curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//')
 
+function sptest {
+    curl --interface $1 http://speedtest.wdc01.softlayer.com/downloads/test10.zip -o tmp.txt>/dev/null
+}
