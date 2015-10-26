@@ -176,5 +176,5 @@ export QTDIR=/usr/local/Qt5.2.0/5.2.0/clang_64/
 myip=$(curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//')
 
 function sptest {
-    curl --interface $1 http://speedtest.wdc01.softlayer.com/downloads/test10.zip -o tmp.txt>/dev/null
+    curl --interface $1 http://speedtest.wdc01.softlayer.com/downloads/test10.zip > /dev/null
 }
