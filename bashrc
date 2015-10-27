@@ -38,6 +38,8 @@ ${GRAY}==> ${BRIGHTGREEN}"
 }
 prompt
 
+export SVN_SHOWDIRTYSTATE=1 
+
 # Looks best on a terminal with black background.....
 
 printf "${CYAN}This is BASH ${RED}${BASH_VERSION%.*}\
@@ -174,7 +176,8 @@ export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
 export QTDIR=/usr/local/Qt5.2.0/5.2.0/clang_64/
 
 #misc
-myip=$(curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//')
+#myip=$(curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//')
+myip=$(dig +short myip.opendns.com @resolver1.opendns.com)
 
 function sptest {
     curl --interface $1 http://speedtest.wdc01.softlayer.com/downloads/test10.zip > /dev/null

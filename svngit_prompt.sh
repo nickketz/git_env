@@ -10,7 +10,9 @@
 # Git/Subversion prompt function
 __git_svn_ps1() {
     local s=
-    if [[ -d ".svn" ]] ; then
+    tmp=$(svn info 2>&1 | grep "Working Copy Root Path")
+#    if [[ -d ".svn" ]] ; then
+    if (($? == 0)) ; then
         local r=`__svn_rev`
         local b=`__svn_branch`
         s=" [$b:$r]"
@@ -23,7 +25,7 @@ __git_svn_ps1() {
 # Outputs the current trunk, branch, or tag
 __svn_branch() {
     local url=
-    if [[ -d .svn ]]; then
+#    if [[ -d .svn ]]; then
         url=`svn info | awk '/URL:/ {print $2}'`
         if [[ $url =~ trunk ]]; then
             echo trunk
@@ -31,8 +33,11 @@ __svn_branch() {
             echo $url | sed -e 's#^.*/\(branches/.*\)/.*$#\1#'
         elif [[ $url =~ /tags/ ]]; then
             echo $url | sed -e 's#^.*/\(tags/.*\)/.*$#\1#'
+	elif [ 1 ] ; then #catch all
+	    url=`svn info | awk '/Working Copy Root Path:/ {print $5}'`
+	    echo $url | sed -e 's/.*\///'
         fi
-    fi
+#    fi
 }
 
 # Outputs the current revision

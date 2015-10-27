@@ -1,6 +1,7 @@
 #server aliases
 myusr=ADDUSERHERE
 mylclusr=ANOTHERUSERHERE
+myport=PORTNUMBER
 alias csci="ssh -CX ${myusr}@elra-01.cs.colorado.edu" 
 
 alias janus='ssh ${myusr}@login.rc.colorado.edu'
@@ -24,14 +25,12 @@ alias proxyon='networksetup -setwebproxystate wi-fi on'
 #misc local stuff
 myaliasip=alisoncartwright.com
 
-alias whatsmyip="curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//'"
+alias whatsmyip='dig +short myip.opendns.com @resolver1.opendns.com'
 
-alias seedbox='ssh -p 2222 ${mylclusr}@$myaliasip'
+alias seedbox='ssh -p ${myport} ${mylclusr}@$myaliasip'
 
-alias startsudovnc="ssh -tp 2222 ${mylclusr}@$myaliasip '\''sudo screen -dmS vnc x11vnc -xkb -noxrecord -noxfixes -noxdamage -display :0 -auth /var/run/lightdm/root/:0 -nopw >> /home/nketz/screenerror.log';/Applications/'Chicken.app'/Contents/MacOS/'Chicken' 192.168.1.125&"
+alias startvnc='ssh -p ${myport} ${mylclusr}@$myaliasip '\''screen -dmS vnc x11vnc -nopw -display :0'\'';/Applications/JollysFastVNC.app/Contents/MacOS/JollysFastVNC&'
 
-alias startvnc='ssh -p 2222 ${mylclusr}@$myaliasip '\''screen -dmS vnc x11vnc -nopw -display :0'\'';/Applications/JollysFastVNC.app/Contents/MacOS/JollysFastVNC&'
-
-alias seedsshfs="sshfs {mylclusr}@${myaliasip}:/home/nketz/Downloads ~/ubuntu -p 2222"
+alias seedsshfs="sshfs {mylclusr}@${myaliasip}:/home/nketz/Downloads ~/ubuntu -p ${myport}"
 
 alias boulder='cd ~/Documents/Documents/boulder'
