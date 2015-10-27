@@ -7,8 +7,9 @@ else
   esac
 fi
 
-#add git info
+#add git/svn info
 source ~/.git-prompt.sh
+source ~/.svngit_prompt.sh
 
 function prompt
 {
@@ -32,7 +33,7 @@ if [[ "${SESSION_TYPE}" = "remote/ssh" ]]; then
 else
     HILIT=${cyan}  # local machine: prompt will be partly cyan
 fi
-PS1="${WHITE}( ${HILIT}\u${BRIGHTGREEN}@${HILIT}\h ${GREEN}\w${PURPLE}\$(__git_ps1)${WHITE} )
+PS1="${WHITE}( ${HILIT}\u${BRIGHTGREEN}@${HILIT}\h ${GREEN}\w${PURPLE}\$(__git_svn_ps1)${WHITE} )
 ${GRAY}==> ${BRIGHTGREEN}"
 }
 prompt
