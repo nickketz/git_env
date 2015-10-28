@@ -10,13 +10,12 @@
 # Git/Subversion prompt function
 __git_svn_ps1() {
     local s=
-    tmp=$(svn info 2>&1 | grep "Working Copy Root Path")
-#    if [[ -d ".svn" ]] ; then
+    issvn=$(svn info 2>&1 | grep "Working Copy Root Path")
     if (($? == 0)) ; then
         local r=`__svn_rev`
         local b=`__svn_branch`
         s=" [$b:$r]"
-    elif [[ -d .git ]] ; then
+    elif [ -d .git ] || git rev-parse -git-dir > /dev/null 2>&1 ; then
         s=`__git_ps1`
     fi
     echo -n "$s"
@@ -26,17 +25,17 @@ __git_svn_ps1() {
 __svn_branch() {
     local url=
 #    if [[ -d .svn ]]; then
-        url=`svn info | awk '/URL:/ {print $2}'`
-        if [[ $url =~ trunk ]]; then
-            echo trunk
-        elif [[ $url =~ /branches/ ]]; then
-            echo $url | sed -e 's#^.*/\(branches/.*\)/.*$#\1#'
-        elif [[ $url =~ /tags/ ]]; then
-            echo $url | sed -e 's#^.*/\(tags/.*\)/.*$#\1#'
-	elif [ 1 ] ; then #catch all
+#        url=`svn info | awk '/URL:/ {print $2}'`
+#        if [[ $url =~ trunk ]]; then
+#            echo trunk
+#        elif [[ $url =~ /branches/ ]]; then
+#            echo $url | sed -e 's#^.*/\(branches/.*\)/.*$#\1#'
+#        elif [[ $url =~ /tags/ ]]; then
+#            echo $url | sed -e 's#^.*/\(tags/.*\)/.*$#\1#'
+#	elif [ 1 ] ; then #catch all
 	    url=`svn info | awk '/Working Copy Root Path:/ {print $5}'`
 	    echo $url | sed -e 's/.*\///'
-        fi
+#        fi
 #    fi
 }
 
@@ -46,8 +45,8 @@ __svn_rev() {
 
     if [ ! -z $SVN_SHOWDIRTYSTATE ]; then
         local svnst flag
-        svnst=$(svn status | grep '^\s*[?ACDMR?!]')
-        [ -z "$svnst" ] && flag=*
+        svnst=$(svn status | grep '^\s*[ACDMR!]')
+        [ -z "$svnst" ] || flag=*
         r=$r$flag
     fi
     echo $r
