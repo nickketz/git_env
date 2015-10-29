@@ -90,8 +90,8 @@ alias tree='tree -Csu'     # nice alternative to 'recursive ls'
 function ll(){ ls -l "$@"| egrep "^d" ; ls -lXB "$@" 2>&-| \
                 egrep -v "^d|total "; }
 
-# Find a file with a pattern in name:
-function ff() { find . -type f -iname '*'$*'*' ; }
+# Find a file or folder with a pattern in name:
+function ff() { find . -iname '*'$*'*' ; }
 
 # Find a file with pattern $1 in name and Execute $2 on it:
 function fe()
