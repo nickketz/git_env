@@ -42,11 +42,11 @@ export SVN_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWDIRTYSTATE=1
 export GIT_PS1_SHOWCOLORHINTS=1
 export GIT_PS1_SHOWUPSTREAM="auto"
-# Looks best on a terminal with black background.....
 
-printf "${CYAN}This is BASH ${RED}${BASH_VERSION%.*}\
+# Looks best on a terminal with black background.....
+#printf "${CYAN}This is BASH ${RED}${BASH_VERSION%.*}\
 #${CYAN} - DISPLAY on ${RED}$DISPLAY${NC}\n"
-date
+#date
 
 
 #-------------------
