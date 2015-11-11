@@ -1,7 +1,7 @@
 #server aliases
-myusr=ADDUSERHERE
-mylclusr=ANOTHERUSERHERE
-myport=PORTNUMBER
+myusr=UniUser
+mylclusr=LocalUser
+myport=LocalSSHPort
 alias csci="ssh -CX ${myusr}@elra-01.cs.colorado.edu" 
 
 alias janus='ssh ${myusr}@login.rc.colorado.edu'
@@ -29,9 +29,9 @@ alias whatsmyip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 alias seedbox='ssh -p ${myport} ${mylclusr}@$myaliasip'
 
-alias startvnc='ssh -p ${myport} ${mylclusr}@$myaliasip '\''screen -dmS vnc x11vnc -loop100 -many -usepw -display :0'\'';/Applications/JollysFastVNC.app/Contents/MacOS/JollysFastVNC&'
+alias startvnc='ssh -p ${myport} ${mylclusr}@$myaliasip '\''screen -dmS vnc x11vnc -loop100 -many -usepw -display :0'\'';sleep 5;open vnc://192.168.1.125'
 
-alias startsudovnc="ssh -tp ${myport} ${mylclusr}@$myaliasip '\''sudo screen -dmS vnc x11vnc -many -loop100 -display :0 -auth /var/run/lightdm/root/:0 -usepw'"
+alias startsudovnc="ssh -tp ${myport} ${mylclusr}@$myaliasip '\''sudo screen -dmS vnc x11vnc -many -loop100 -display :0 -auth /var/run/lightdm/root/:0 -usepw';sleep 5;open vnc://192.168.1.125"
 
 alias seedsshfs="sshfs {mylclusr}@${myaliasip}:~/Downloads ~/ubuntu -p ${myport}"
 
