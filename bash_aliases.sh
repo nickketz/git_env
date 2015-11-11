@@ -29,8 +29,10 @@ alias whatsmyip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 alias seedbox='ssh -p ${myport} ${mylclusr}@$myaliasip'
 
-alias startvnc='ssh -p ${myport} ${mylclusr}@$myaliasip '\''screen -dmS vnc x11vnc -nopw -display :0'\'';/Applications/JollysFastVNC.app/Contents/MacOS/JollysFastVNC&'
+alias startvnc='ssh -p ${myport} ${mylclusr}@$myaliasip '\''screen -dmS vnc x11vnc -loop100 -many -usepw -display :0'\'';/Applications/JollysFastVNC.app/Contents/MacOS/JollysFastVNC&'
 
-alias seedsshfs="sshfs {mylclusr}@${myaliasip}:/home/nketz/Downloads ~/ubuntu -p ${myport}"
+alias startsudovnc="ssh -tp ${myport} ${mylclusr}@$myaliasip '\''sudo screen -dmS vnc x11vnc -many -loop100 -display :0 -auth /var/run/lightdm/root/:0 -usepw'"
+
+alias seedsshfs="sshfs {mylclusr}@${myaliasip}:~/Downloads ~/ubuntu -p ${myport}"
 
 alias boulder='cd ~/Documents/Documents/boulder'
