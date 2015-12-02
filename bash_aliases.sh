@@ -33,6 +33,8 @@ alias startvnc='ssh -p ${myport} ${mylclusr}@$myaliasip '\''screen -dmS vnc x11v
 
 alias startsudovnc="ssh -tp ${myport} ${mylclusr}@$myaliasip '\''sudo screen -dmS vnc x11vnc -many -loop100 -display :0 -auth /var/run/lightdm/root/:0 -usepw';sleep 5;open vnc://192.168.1.125"
 
+alias startvlc="ssh -p ${myport} ${mylclusr}@$myaliasip '\''export DISPLAY=:0; screen -dmS vlc vlc -I http'"
+
 alias seedsshfs="sshfs {mylclusr}@${myaliasip}:~/Downloads ~/ubuntu -p ${myport}"
 
 alias boulder='cd ~/Documents/Documents/boulder'
