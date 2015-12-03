@@ -2,6 +2,8 @@
 myusr=UniUser
 mylclusr=LocalUser
 myport=LocalSSHPort
+myaliasip=LocalDNS
+
 alias csci="ssh -CX ${myusr}@elra-01.cs.colorado.edu" 
 
 alias janus='ssh ${myusr}@login.rc.colorado.edu'
@@ -23,8 +25,6 @@ alias proxyon='networksetup -setwebproxystate wi-fi on'
 
 
 #misc local stuff
-myaliasip=alisoncartwright.com
-
 alias whatsmyip='dig +short myip.opendns.com @resolver1.opendns.com'
 
 alias seedbox='ssh -p ${myport} ${mylclusr}@$myaliasip'
