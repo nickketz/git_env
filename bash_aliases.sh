@@ -35,6 +35,12 @@ alias startsudovnc="ssh -tp ${myport} ${mylclusr}@$myaliasip '\''sudo screen -dm
 
 alias startvlc="ssh -p ${myport} ${mylclusr}@$myaliasip '\''export DISPLAY=:0; screen -dmS vlc vlc -I http'"
 
+alias killvlc="ssh -p ${myport} ${mylclusr}@$myaliasip '\''killall -9 vlc'"
+
+alias startkodi="ssh -p ${myport} ${mylclusr}@$myaliasip '\''export DISPLAY=:0; screen -dmS kodi kodi'"
+
+alias killkodi="ssh -p ${myport} ${mylclusr}@$myaliasip '\''killall -9 kodi.bin'"
+
 alias seedsshfs="sshfs {mylclusr}@${myaliasip}:~/Downloads ~/ubuntu -p ${myport}"
 
 alias boulder='cd ~/Documents/Documents/boulder'
