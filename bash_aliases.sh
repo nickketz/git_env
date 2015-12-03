@@ -31,7 +31,11 @@ alias seedbox='ssh -p ${myport} ${mylclusr}@$myaliasip'
 
 alias startvnc='ssh -p ${myport} ${mylclusr}@$myaliasip '\''screen -dmS vnc x11vnc -loop100 -many -usepw -display :0'\'';sleep 5;open vnc://192.168.1.125'
 
-alias startsudovnc="ssh -tp ${myport} ${mylclusr}@$myaliasip '\''sudo screen -dmS vnc x11vnc -many -loop100 -display :0 -auth /var/run/lightdm/root/:0 -usepw';sleep 5;open vnc://192.168.1.125"
+alias killvnc="ssh -p ${myport} ${mylclusr}@$myaliasip '\''killall -9 x11vnc'"
+
+alias startsudovnc="ssh -tp ${myport} ${mylclusr}@$myaliasip '\''sudo screen -dmS vnc x11vnc -display :0 -auth /var/run/lightdm/root/:0 -usepw'"
+
+#alias startsudovnc="ssh -tp ${myport} ${mylclusr}@$myaliasip '\''sudo screen -dmS vnc x11vnc -many -loop100 -display :0 -auth /var/run/lightdm/root/:0 -usepw';sleep 5;open vnc://192.168.1.125"
 
 alias startvlc="ssh -p ${myport} ${mylclusr}@$myaliasip '\''export DISPLAY=:0; screen -dmS vlc vlc -I http'"
 
